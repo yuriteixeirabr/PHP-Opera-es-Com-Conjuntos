@@ -1,3 +1,8 @@
-<p>
-  home works!
-</p>
+<button mat-fab [matMenuTriggerFor]="principal" color="primary">Menu</button>
+
+<mat-menu #principal="matMenu">
+    <button mat-menu-item routerLink="/home/operacoes">Operações</button>
+    <button mat-menu-item routerLink="/home/documentacao-api">Documentação API</button>
+</mat-menu>
+<hr>
+<router-outlet></router-outlet>

@@ -1,0 +1,39 @@
+<div class="container">
+    <section class="example-section">
+        <mat-progress-bar
+                [color]="color"
+                [mode]="mode"
+                [value]="value"
+                [bufferValue]="bufferValue" *ngIf="transactionStart">
+        </mat-progress-bar>
+    </section>
+    <div class="alert alert-warning alert-dismissible" data-auto-dismiss role="alert" *ngIf="error">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                (click)="fecharError()"><span aria-hidden="true">&times;</span></button>
+        <strong>Atenção!</strong> {{error}}, por favor tente novamente.
+    </div>
+    <br>
+
+    <h1 class="text-center">Operações com Conjuntos</h1><br>
+
+    <form class="form" name="principalForm" [formGroup]="conjuntoForm">
+        <ng-template matStepLabel>Paramêtros para Processamento</ng-template>
+        <div class="row">
+            <div class="col-md-5">
+                <mat-form-field class="full-width" hintLabel="Selecione o tipo da operação">
+                    <mat-select placeholder="Tipos de Operação" (valueChange)="selectOperacao($event)"
+                                [formControl]="tipoOperacaoFormControl" required>
+                        <mat-option *ngFor="let tipo of tiposOperacoes" [value]="tipo">{{tipo}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="tipoOperacaoFormControl.invalid">
+                        {{getRequiredErrorMessage('tipoOperacao')}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form><br>
+    <div>
+        <button mat-raised-button color="primary" [disabled]="!conjuntoForm.valid">Confirmar
+        </button>
+    </div>
+</div>
